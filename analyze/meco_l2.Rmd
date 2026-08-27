@@ -1,0 +1,192 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(lme4)
+library(readxl)
+library(reticulate)
+py_install("wordfreq")
+wordfreq = import("wordfreq")
+```
+
+
+
+```{r}
+load("../meco_l2/joint_data_l2_trimmed_version2.2.rda")
+
+w1 = joint.data
+
+load("../meco_l2/joint_data_trimmed_L2_wave2_version2.2.rda")
+w2 = joint.data
+
+```
+
+```{r}
+get_freq = function(x){
+  wordfreq$zipf_frequency(x,"en")
+}
+```
+
+
+```{r}
+lm_results = read_tsv("results.tsv")%>%select(-"...1",-"FullText",-"FullTextMarked")%>%
+  mutate(itemid=as_factor(itemid))
+```
+
+
+```{r}
+all_data = w1%>%add_row(w2%>%select(-supplementary_id))
+
+all_data = all_data%>%
+  left_join(all_data%>%
+              distinct(word)%>%
+              mutate(wlen = nchar(word))%>%
+              mutate(freq = map_dbl(word,get_freq)))%>%
+  left_join(lm_results)%>%as_tibble()%>%ungroup()
+
+```
+
+
+```{r}
+# all_stims = all_data %>%
+#   distinct(itemid,wordnum,word)%>%
+#   arrange(itemid,wordnum)%>%
+#   group_by(itemid)%>%
+#   mutate(
+#     FullText = accumulate(word, ~paste(.x, .y, sep = " ")),
+#     FullTextMarked = str_replace(FullText, "(\\S+)$", "*\\1*")
+#   )
+# 
+# all_stims%>%select(-FullTextMarked)%>%write_tsv("../stimuli/meco_l2_stims.tsv")
+# all_stims%>%select(FullTextMarked)%>%write_tsv("../stimuli/meco_l2_stims.txt",col_names = F)
+```
+
+```{r}
+get_prev = function(current_dataset){
+  back1 = current_dataset%>%distinct(itemid,wordnum,Surprisal,wlen,freq)%>%
+  rename("Surprisal1p"="Surprisal",
+         "wlen1p"="wlen",
+         "freq1p"="freq")%>%
+  mutate(wordnum=wordnum-1)%>%
+  filter(wordnum>=1)%>%distinct()
+  
+  back2 = current_dataset%>%distinct(itemid,wordnum,Surprisal,wlen,freq)%>%
+  rename("Surprisal2p"="Surprisal",
+         "wlen2p"="wlen",
+         "freq2p"="freq")%>%
+  mutate(wordnum=wordnum-2)%>%
+  filter(wordnum>=1)%>%distinct()
+
+current_dataset = current_dataset%>%
+  inner_join(back1,by=c("itemid","wordnum"))%>%
+  inner_join(back2,by=c("itemid","wordnum"))%>%
+  distinct()
+
+current_dataset
+}
+```
+
+```{r}
+get_loglik = function(df,lang_code,model){
+  df%>%
+  rename("Surprisal"=all_of(model))%>%
+  group_by(itemid,sentnum)%>%
+  filter(wordnum!=min(wordnum))%>%
+  filter(wordnum!=max(wordnum))%>%
+  filter(lang==all_of(lang_code))%>%
+  inner_join(get_prev(df%>%rename("Surprisal"=all_of(model))))%>%
+  lmer(data = ., firstrun.dur ~ scale(Surprisal) + scale(Surprisal1p) + scale(Surprisal2p)+ scale(wordnum) + scale(wlen)+ scale(wlen1p)+ scale(wlen2p) + scale(freq)+ scale(freq1p)+ scale(freq2p) + (1+scale(Surprisal) + scale(Surprisal1p) + scale(Surprisal2p)+ scale(wordnum) + scale(wlen)+ scale(wlen1p)+ scale(wlen2p) + scale(freq)+ scale(freq1p)+ scale(freq2p)||subid),REML=F)%>%logLik()
+}
+```
+
+
+```{r}
+get_loglik_baseline = function(df,lang_code,model){
+  df%>%
+  rename("Surprisal"=all_of(model))%>%
+  group_by(itemid,sentnum)%>%
+  filter(wordnum!=min(wordnum))%>%
+  filter(wordnum!=max(wordnum))%>%
+  filter(lang==all_of(lang_code))%>%
+  inner_join(get_prev(df%>%rename("Surprisal"=all_of(model))))%>%
+  lmer(data = ., firstrun.dur ~ scale(wordnum) + scale(wlen)+ scale(wlen1p)+ scale(wlen2p) + scale(freq)+ scale(freq1p)+ scale(freq2p) + (1+ scale(wordnum) + scale(wlen)+ scale(wlen1p)+ scale(wlen2p) + scale(freq)+ scale(freq1p)+ scale(freq2p)||subid),REML=F)%>%logLik()
+}
+```
+
+```{r}
+results_summary = tribble(
+  ~lang,~model,~logLik,
+  "nld","baseline",as.numeric(get_loglik_baseline(all_data,"du","beetlelm_eng_mono")),
+  
+  "nld","xglm_4.5b",as.numeric(get_loglik(all_data,"du","xglm__4.5B")),
+  "nld","eurollm_1.7b",as.numeric(get_loglik(all_data,"du","EuroLLM__1.7B")),
+  "nld","aya_tiny",as.numeric(get_loglik(all_data,"du","tiny__aya__base")),
+  "nld","apertus_8b",as.numeric(get_loglik(all_data,"du","Apertus__8B__2509")),
+  
+  "nld","beetlelm_eng_mono",as.numeric(get_loglik(all_data,"du","beetlelm_eng_mono")),
+  "nld","beetlelm_nld_L1__eng_L2_balanced",as.numeric(get_loglik(all_data,"du","beetlelm_nld_L1__eng_L2_balanced")),
+  "nld","beetlelm_nld_L1__eng_L2_simultaneous",as.numeric(get_loglik(all_data,"du","beetlelm_nld_L1__eng_L2_simultaneous")),
+  "zho","baseline",as.numeric(get_loglik_baseline(all_data,"ch_s","beetlelm_eng_mono")),
+  
+  "zho","xglm_4.5b",as.numeric(get_loglik(all_data,"ch_s","xglm__4.5B")),
+  "zho","eurollm_1.7b",as.numeric(get_loglik(all_data,"ch_s","EuroLLM__1.7B")),
+  "zho","aya_tiny",as.numeric(get_loglik(all_data,"ch_s","tiny__aya__base")),
+  "zho","apertus_8b",as.numeric(get_loglik(all_data,"ch_s","Apertus__8B__2509")),
+  
+  "zho","beetlelm_eng_mono",as.numeric(get_loglik(all_data,"ch_s","beetlelm_eng_mono")),
+  "zho","beetlelm_zho_L1__eng_L2_balanced",as.numeric(get_loglik(all_data,"ch_s","beetlelm_zho_L1__eng_L2_balanced")), "zho","beetlelm_zho_L1__eng_L2_simultaneous",as.numeric(get_loglik(all_data,"ch_s","beetlelm_zho_L1__eng_L2_simultaneous")),
+  "deu","baseline",as.numeric(get_loglik_baseline(all_data,"ge","beetlelm_eng_mono")),
+  
+
+  "deu","xglm_4.5b",as.numeric(get_loglik(all_data,"ge","xglm__4.5B")),
+  "deu","eurollm_1.7b",as.numeric(get_loglik(all_data,"ge","EuroLLM__1.7B")),
+  "deu","aya_tiny",as.numeric(get_loglik(all_data,"ge","tiny__aya__base")),
+  "deu","apertus_8b",as.numeric(get_loglik(all_data,"ge","Apertus__8B__2509")),
+  
+  "deu","beetlelm_eng_mono",as.numeric(get_loglik(all_data,"ge","beetlelm_eng_mono")),
+  "deu","beetlelm_deu_L1__eng_L2_balanced",as.numeric(get_loglik(all_data,"ge","beetlelm_deu_L1__eng_L2_balanced")), "deu","beetlelm_deu_L1__eng_L2_simultaneous",as.numeric(get_loglik(all_data,"ge","beetlelm_deu_L1__eng_L2_simultaneous"))
+  
+)
+
+
+```
+
+```{r}
+results_summ
+```
+
+
+```{r}
+results_summary_cleaned = results_summary%>%
+  group_by(lang)%>%
+  filter(model=="baseline")%>%
+  rename("baseline_loglik"="logLik")%>%
+  select(-model)%>%
+  left_join(results_summary,.,by="lang")%>%
+  filter(model!="baseline")%>%
+  mutate(normalized_loglik = logLik-baseline_loglik)%>%
+  mutate(model_class = case_when(str_detect(model,"mono") ~"mono",
+                                 str_detect(model,"balanced") ~"L2 bal.",
+                                 str_detect(model,"simultaneous") ~"L2 sim.",
+                                 
+                                 str_detect(model,"xglm") ~"XGLM",
+                                 str_detect(model,"aya") ~"Aya",
+                                 str_detect(model,"apertus") ~"Apertus",
+                                 str_detect(model,"eurollm") ~"EuroLLM",
+                                 ))
+
+results_summary_cleaned%>%write_tsv("results_summary.tsv")
+
+
+results_summary_cleaned%>%
+  ggplot(aes(x=model_class,y=normalized_loglik,fill=model_class)) + geom_col(position="dodge") + facet_wrap(.~lang,scales="free_x")+
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank() 
+  )
+```

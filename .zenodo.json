@@ -1,0 +1,19 @@
+{
+  "title": "beetle-analyze",
+  "description": "A minimal, reproducible toolkit for analysing language-model evaluation output via BLiMP-style minimal-pair accuracy.",
+  "license": "Apache-2.0",
+  "upload_type": "software",
+  "version": "0.1.0",
+  "keywords": [
+    "language-models",
+    "evaluation",
+    "BLiMP",
+    "minimal-pairs",
+    "reproducibility"
+  ],
+  "creators": [
+    {
+      "name": "Salhan, Suchir"
+    }
+  ]
+}

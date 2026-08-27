@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given Welsh text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 – Gall dysgwyr ar y lefel hon roi gwybodaeth am faterion o berthnasedd personol (e.e. pethau maen nhw’n eu hoffi a’u casáu, teulu, anifeiliaid anwes) gan ddefnyddio geiriau/arwyddion syml ac ymadroddion sylfaenol. Gall dysgwyr hefyd gynhyrchu brawddegau ac ymadroddion syml, arwahanol.
+
+A2 – Gall dysgwyr ar y lefel hon gynhyrchu cyfres o ymadroddion a brawddegau syml wedi’u cysylltu gan gysyllteiriau syml fel “a”, “ond” a “oherwydd”. Mae gan ddysgwyr eirfa ddigonol i fynegi anghenion cyfathrebu sylfaenol ac i ymdopi ag anghenion goroesi syml.
+
+B1 – Gall dysgwyr ar y lefel hon gynhyrchu testunau cysylltiedig, uniongyrchol ar ystod o bynciau cyfarwydd o fewn eu maes diddordeb, drwy gysylltu cyfres o elfennau byrrach ar wahân i mewn i ddilyniannol linol. Mae ganddynt ystod dda o eirfa sy’n ymwneud â phethau cyfarwydd a sefyllfaoedd bob dydd.
+
+B2 – Gall dysgwyr ar y lefel hon gynhyrchu testunau clir, manwl ar amrywiaeth o bynciau sy’n gysylltiedig â’u maes diddordeb, gan gyfuno a gwerthuso gwybodaeth a dadleuon o sawl ffynhonnell. Mae ganddynt ystod dda o eirfa ar gyfer materion sy’n gysylltiedig â’u maes ac ar gyfer y rhan fwyaf o bynciau cyffredinol.
+
+C1 – Gall dysgwyr ar y lefel hon gynhyrchu testunau clir, wedi’u strwythuro’n dda ar bynciau cymhleth, gan amlygu’r materion perthnasol, ehangu a chefnogi safbwyntiau’n fanwl gyda phwyntiau ategol, rhesymau ac enghreifftiau perthnasol, a gorffen gyda chasgliad priodol. Gallant hefyd ddefnyddio strwythur a chonfensiynau amrywiaeth o genres, gan amrywio’r naws, arddull a chofrestr yn ôl y derbynnydd, math y testun a’r thema.
+
+C2 – Gall dysgwyr ar y lefel hon gynhyrchu testunau clir, esmwyth a chymhleth mewn arddull briodol ac effeithiol ac mewn strwythur resymegol sy’n helpu’r darllenydd i nodi pwyntiau arwyddocaol. Mae ganddynt reolaeth dda dros eirfa eang iawn gan gynnwys ymadroddion idiomatig a llafariad; maent yn dangos ymwybyddiaeth o lefelau ystyron cynhennus.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

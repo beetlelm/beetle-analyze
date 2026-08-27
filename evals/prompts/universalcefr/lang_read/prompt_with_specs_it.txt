@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given Italian text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 - Gli studenti di questo livello riescono a comprendere testi molto brevi e semplici, una frase alla volta, cogliendo nomi familiari, parole e frasi di base e rileggendo quando necessario.
+
+A2 - Gli studenti di questo livello riescono a comprendere testi brevi e semplici contenenti il ​​vocabolario più frequente, inclusa una parte di elementi di vocabolario internazionale condiviso.
+
+B1 - Gli studenti di questo livello riescono a leggere testi fattuali semplici su argomenti correlati al loro campo di interesse con un livello di comprensione soddisfacente.
+
+B2 - Gli studenti di questo livello riescono a leggere con un ampio grado di indipendenza, adattando stile e velocità di lettura a testi e scopi diversi e utilizzando fonti di riferimento appropriate in modo selettivo. Ha un ampio vocabolario di lettura attiva, ma può avere qualche difficoltà con idiomi a bassa frequenza.
+
+C1 - Gli studenti di questo livello riescono a comprendere in dettaglio testi lunghi e complessi, indipendentemente dal fatto che siano correlati o meno alla propria area di specializzazione, a condizione che riescano a rileggere sezioni difficili. Possono anche comprendere un'ampia varietà di testi, tra cui scritti letterari, articoli di giornali o riviste e pubblicazioni accademiche o professionali specializzate, a condizione che vi siano opportunità di rilettura e abbiano accesso a strumenti di riferimento.
+
+C2 - Gli studenti di questo livello possono comprendere praticamente tutti i tipi di testi, tra cui scritti letterari e non letterari astratti, strutturalmente complessi o altamente colloquiali. Possono anche comprendere un'ampia gamma di testi lunghi e complessi, apprezzando sottili distinzioni di stile e significato implicito ed esplicito.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

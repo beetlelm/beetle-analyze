@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given Portuguese text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 - Os alunos deste nível podem entender textos muito curtos e simples, uma única frase de cada vez, pegando nomes, palavras e frases básicas familiares e relendo conforme necessário.
+
+A2 - Os alunos deste nível podem entender textos curtos e simples contendo o vocabulário de maior frequência, incluindo uma proporção de itens de vocabulário internacional compartilhados.
+
+B1 - Os alunos deste nível podem ler textos factuais diretos sobre assuntos relacionados ao seu campo de interesse com um nível satisfatório de compreensão.
+
+B2 - Os alunos deste nível podem ler com um alto grau de independência, adaptando o estilo e a velocidade de leitura a diferentes textos e propósitos, e usando fontes de referência apropriadas seletivamente. Tem um amplo vocabulário de leitura ativa, mas pode ter alguma dificuldade com expressões idiomáticas de baixa frequência.
+
+C1 - Os alunos deste nível podem entender em detalhes textos longos e complexos, estejam eles relacionados ou não à sua própria área de especialidade, desde que possam reler seções difíceis. Eles também podem entender uma grande variedade de textos, incluindo escritos literários, artigos de jornais ou revistas e publicações acadêmicas ou profissionais especializadas, desde que haja oportunidades de releitura e tenham acesso a ferramentas de referência.
+
+C2 - Alunos deste nível podem entender virtualmente todos os tipos de textos, incluindo escritos abstratos, estruturalmente complexos ou altamente coloquiais, literários e não literários. Eles também podem entender uma grande variedade de textos longos e complexos, apreciando sutis distinções de estilo e significado implícito e explícito.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

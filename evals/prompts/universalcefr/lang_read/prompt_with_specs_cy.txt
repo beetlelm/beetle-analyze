@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given Welsh text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 - Gall dysgwyr y lefel hon ddeall testunau byr iawn, syml un cymal ar y tro, gan godi enwau, geiriau ac ymadroddion sylfaenol cyfarwydd ac ailddarllen yn ôl yr angen.
+
+A2 - Gall dysgwyr y lefel hon ddeall testunau byr, syml sy'n cynnwys yr eirfa fwyaf aml, gan gynnwys cyfran o eitemau geirfa ryngwladol a rennir.
+
+B1 - Gall dysgwyr y lefel hon ddarllen testunau ffeithiol syml ar bynciau sy'n ymwneud â'u maes diddordeb gyda lefel foddhaol o ddealltwriaeth.
+
+B2 - Gall dysgwyr y lefel hon ddarllen yn annibynnol iawn, gan addasu arddull a chyflymder darllen i wahanol destunau a dibenion, a defnyddio ffynonellau cyfeirio priodol yn ddetholus. Yn meddu ar eirfa ddarllen weithredol eang, ond gall brofi peth anhawster gydag idiomau amledd isel.
+
+C1 - Gall dysgwyr y lefel hon ddeall yn fanwl destunau hir a chymhleth, p'un a yw'r rhain yn ymwneud â'u maes arbenigedd eu hunain ai peidio, ar yr amod eu bod yn gallu ailddarllen adrannau anodd. Gallant hefyd ddeall amrywiaeth eang o destunau gan gynnwys ysgrifau llenyddol, erthyglau papur newydd neu gylchgronau, a chyhoeddiadau academaidd neu broffesiynol arbenigol, ar yr amod bod cyfleoedd i'w hail-ddarllen a bod offer cyfeirio ar gael iddynt.
+
+C2 - Gall dysgwyr ar y lefel hon ddeall bron bob math o destunau gan gynnwys ysgrifau llenyddol ac anllenyddol haniaethol, strwythurol gymhleth, neu ysgrifau llenyddol ac anllenyddol hynod lafar. Gallant hefyd ddeall ystod eang o destunau hir a chymhleth, gan werthfawrogi gwahaniaethau cynnil o ran arddull ac ystyr ymhlyg yn ogystal ag ystyr amlwg.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

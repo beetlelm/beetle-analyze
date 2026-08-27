@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given Dutch text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 - Leerlingen van dit niveau kunnen zeer korte, eenvoudige teksten begrijpen, één zin tegelijk, bekende namen, woorden en basiszinnen oppikken en indien nodig herlezen.
+
+A2 - Leerlingen van dit niveau kunnen korte, eenvoudige teksten begrijpen die de meest frequente woordenschat bevatten, inclusief een deel van de gedeelde internationale woordenschatitems.
+
+B1 - Leerlingen van dit niveau kunnen eenvoudige feitelijke teksten lezen over onderwerpen die verband houden met hun interessegebied met een bevredigend niveau van begrip.
+
+B2 - Leerlingen van dit niveau kunnen met een grote mate van onafhankelijkheid lezen, de stijl en leessnelheid aanpassen aan verschillende teksten en doeleinden, en selectief gebruikmaken van geschikte referentiebronnen. Heeft een brede actieve leeswoordenschat, maar kan enige moeite hebben met laagfrequente idiomen.
+
+C1 - Leerlingen van dit niveau kunnen lange, complexe teksten gedetailleerd begrijpen, ongeacht of deze betrekking hebben op hun eigen vakgebied, op voorwaarde dat ze moeilijke secties kunnen herlezen. Ze kunnen ook een breed scala aan teksten begrijpen, waaronder literaire geschriften, kranten- of tijdschriftartikelen en gespecialiseerde academische of professionele publicaties, mits er mogelijkheden zijn om ze opnieuw te lezen en ze toegang hebben tot referentietools.
+
+C2 - Cursisten van dit niveau kunnen vrijwel alle soorten teksten begrijpen, waaronder abstracte, structureel complexe of zeer informele literaire en niet-literaire geschriften. Ze kunnen ook een breed scala aan lange en complexe teksten begrijpen, waarbij ze subtiele verschillen in stijl en impliciete en expliciete betekenis waarderen.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

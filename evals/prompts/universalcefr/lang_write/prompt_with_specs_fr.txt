@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given French text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 – Les apprenants de ce niveau peuvent fournir des informations sur des sujets personnels (par exemple, goûts et dégoûts, famille, animaux de compagnie) en utilisant des mots/signes simples et des expressions de base. Ils peuvent également produire des phrases et expressions simples et isolées.
+
+A2 – Les apprenants de ce niveau peuvent produire une série de phrases et d’expressions simples reliées par des connecteurs simples comme « et », « mais » et « parce que ». Ils possèdent un vocabulaire suffisant pour exprimer des besoins communicatifs de base et faire face à des situations simples de survie.
+
+B1 – Les apprenants de ce niveau peuvent produire des textes clairs et cohérents sur une variété de sujets familiers dans leur domaine d’intérêt, en reliant une série d’éléments plus courts dans une séquence linéaire. Ils disposent d’un bon éventail de vocabulaire lié aux sujets familiers et aux situations de la vie quotidienne.
+
+B2 – Les apprenants de ce niveau peuvent produire des textes clairs et détaillés sur divers sujets liés à leur domaine d’intérêt, en synthétisant et en évaluant des informations et arguments issus de plusieurs sources. Ils ont un bon éventail de vocabulaire pour les sujets liés à leur domaine ainsi que pour la plupart des thèmes généraux.
+
+C1 – Les apprenants de ce niveau peuvent produire des textes clairs, bien structurés sur des sujets complexes, en soulignant les questions essentielles, en développant et en appuyant leurs points de vue de manière détaillée avec des arguments secondaires, des raisons et des exemples pertinents, et en concluant de manière appropriée. Ils savent aussi utiliser la structure et les conventions de divers genres, en adaptant le ton, le style et le registre selon le destinataire, le type de texte et le thème.
+
+C2 – Les apprenants de ce niveau peuvent produire des textes clairs, fluides et complexes dans un style approprié et efficace, avec une structure logique qui aide le lecteur à identifier les points importants. Ils ont une excellente maîtrise d’un très large éventail lexical incluant des expressions idiomatiques et des tournures familières, et font preuve de sensibilité aux niveaux connotatifs de signification.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

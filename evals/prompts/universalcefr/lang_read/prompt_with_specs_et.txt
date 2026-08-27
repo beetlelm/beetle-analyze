@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given Estonian text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 – selle taseme õppijad saavad aru väga lühikestest lihtsatest tekstidest ühe fraasi kaupa, korjavad üles tuttavad nimed, sõnad ja põhifraasid ning loevad vajaduse korral uuesti läbi.
+
+A2 – selle taseme õppijad saavad aru lühikestest lihtsatest tekstidest, mis sisaldavad kõige sagedamini kasutatavat sõnavara, sealhulgas osa jagatud rahvusvahelistest sõnavaraüksustest.
+
+B1 – selle taseme õppijad oskavad rahuldaval mõistustasemel lugeda otsekoheseid faktitekste nende huvivaldkonnaga seotud teemadel.
+
+B2 – selle taseme õppijad oskavad lugeda suurel määral iseseisvalt, kohandades lugemisstiili ja -kiirust erinevate tekstide ja eesmärkidega ning kasutades valikuliselt sobivaid viiteallikaid. Tal on lai aktiivse lugemise sõnavara, kuid tal võib esineda raskusi madala sagedusega idioomidega.
+
+C1 – selle taseme õppijad saavad üksikasjalikult aru pikkadest ja keerukatest tekstidest, olenemata sellest, kas need on seotud nende enda erialaga või mitte, eeldusel, et nad suudavad raskeid lõike uuesti lugeda. Nad saavad aru ka paljudest erinevatest tekstidest, sealhulgas kirjanduslikest kirjutistest, ajalehtede või ajakirjade artiklitest ning erialastest akadeemilistest või erialastest väljaannetest, eeldusel, et neil on võimalus uuesti lugeda ja neil on juurdepääs viitevahenditele.
+
+C2 – selle taseme õppijad saavad aru peaaegu igat tüüpi tekstidest, sealhulgas abstraktsetest, struktuurselt keerukatest või väga kõnekeelsetest kirjanduslikest ja mittekirjanduslikest kirjutistest. Samuti saavad nad aru paljudest pikkadest ja keerulistest tekstidest, mõistes peent stiilieritlust ning kaudset ja selgesõnalist tähendust.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given Czech text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 – Učící se na této úrovni dokážou poskytovat informace o osobně relevantních záležitostech (např. co mají a nemají rádi, rodina, domácí mazlíčci) pomocí jednoduchých slov/znaků a základních výrazů. Dokážou také vytvářet jednoduché izolované fráze a věty.
+
+A2 – Učící se na této úrovni dokážou vytvářet sérii jednoduchých frází a vět spojených jednoduchými spojkami jako „a“, „ale“ a „protože“. Mají dostatečnou slovní zásobu pro vyjádření základních komunikačních potřeb a zvládání jednoduchých situací nutných pro přežití.
+
+B1 – Učící se na této úrovni dokážou vytvářet přímočaré souvislé texty na řadu známých témat v rámci svého zájmového okruhu, a to spojením série kratších oddělených prvků do lineární posloupnosti. Mají dobrý rozsah slovní zásoby týkající se známých témat a každodenních situací.
+
+B2 – Učící se na této úrovni dokážou vytvářet jasné a podrobné texty o různých tématech souvisejících s jejich oblastí zájmu, přičemž syntetizují a hodnotí informace a argumenty z různých zdrojů. Mají dobrý rozsah slovní zásoby pro témata související s jejich oborem a většinou obecných témat.
+
+C1 – Učící se na této úrovni dokážou vytvářet jasné a dobře strukturované texty o složitých tématech, zdůrazňují důležité body, rozvíjejí a podporují názory rozsáhlým způsobem pomocí vedlejších myšlenek, důvodů a relevantních příkladů a zakončují je vhodným závěrem. Také dokážou využívat strukturu a konvence různých žánrů a měnit tón, styl a formálnost podle adresáta, typu textu a tématu.
+
+C2 – Učící se na této úrovni dokážou vytvářet jasné, plynulé a složité texty vhodným a efektivním stylem a logickou strukturou, která pomáhá čtenáři rozpoznat důležité body. Mají výbornou znalost velmi široké slovní zásoby včetně idiomů a hovorových výrazů; projevují citlivost na konotace a jemné významové odstíny.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

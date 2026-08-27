@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given French text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 - Les apprenants de ce niveau peuvent comprendre des textes très courts et simples, phrase par phrase, en reprenant des noms, des mots et des expressions de base familiers et en les relisant si nécessaire.
+
+A2 - Les apprenants de ce niveau peuvent comprendre des textes courts et simples contenant le vocabulaire le plus courant, y compris une partie du vocabulaire international commun.
+
+B1 - Les apprenants de ce niveau peuvent lire des textes factuels simples sur des sujets liés à leur domaine d'intérêt avec un niveau de compréhension satisfaisant.
+
+B2 - Les apprenants de ce niveau peuvent lire avec une grande autonomie, en adaptant leur style et leur vitesse de lecture à différents textes et objectifs, et en utilisant sélectivement des sources de référence appropriées. Possède un vocabulaire de lecture actif et étendu, mais peut éprouver des difficultés avec les expressions idiomatiques peu fréquentes.
+
+C1 - Les apprenants de ce niveau peuvent comprendre en détail des textes longs et complexes, qu'ils relèvent ou non de leur domaine de spécialité, à condition de pouvoir relire les passages difficiles. Ils peuvent également comprendre une grande variété de textes, notamment des écrits littéraires, des articles de journaux ou de magazines, ainsi que des publications universitaires ou professionnelles spécialisées, à condition de disposer d'opportunités de relecture et d'outils de référence.
+
+C2 - Les apprenants de ce niveau peuvent comprendre pratiquement tous les types de textes, y compris les écrits littéraires et non littéraires abstraits, structurellement complexes ou très familiers. Ils peuvent également comprendre un large éventail de textes longs et complexes, en appréciant les subtilités stylistiques et le sens implicite et explicite.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

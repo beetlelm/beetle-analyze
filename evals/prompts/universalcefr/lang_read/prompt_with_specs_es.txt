@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given Spanish text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 - Los estudiantes de este nivel pueden comprender textos muy breves y sencillos, frase por frase, recogiendo nombres, palabras y frases básicas familiares y releyendo según sea necesario.
+
+A2 - Los estudiantes de este nivel pueden comprender textos breves y sencillos que contienen el vocabulario de mayor frecuencia, incluyendo una proporción de vocabulario internacional compartido.
+
+B1 - Los estudiantes de este nivel pueden leer textos factuales sencillos sobre temas relacionados con su área de interés con un nivel de comprensión satisfactorio.
+
+B2 - Los estudiantes de este nivel pueden leer con un alto grado de independencia, adaptando el estilo y la velocidad de lectura a diferentes textos y propósitos, y utilizando selectivamente las fuentes de referencia adecuadas. Poseen un amplio vocabulario de lectura activa, pero pueden tener alguna dificultad con expresiones idiomáticas de baja frecuencia.
+
+C1 - Los estudiantes de este nivel pueden comprender con detalle textos extensos y complejos, independientemente de si se relacionan con su área de especialidad, siempre que puedan releer las secciones difíciles. También pueden comprender una amplia variedad de textos, incluyendo escritos literarios, artículos de periódicos o revistas, y publicaciones académicas o profesionales especializadas, siempre que tengan la oportunidad de releer y acceso a recursos de referencia.
+
+C2 - Los estudiantes de este nivel pueden comprender prácticamente todo tipo de textos, incluyendo textos literarios y no literarios abstractos, estructuralmente complejos o muy coloquiales. También pueden comprender una amplia gama de textos largos y complejos, apreciando las sutiles diferencias de estilo y el significado, tanto implícito como explícito.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

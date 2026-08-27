@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given Czech text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 – Studenti této úrovně dokážou porozumět velmi krátkým jednoduchým textům po jedné frázi, pochytají známá jména, slova a základní fráze a přečtou si je podle potřeby.
+
+A2 – Studenti této úrovně dokážou porozumět krátkým jednoduchým textům obsahujícím nejfrekventovanější slovní zásobu, včetně části sdílené mezinárodní slovní zásoby.
+
+B1 – Studenti této úrovně dokážou číst přímočaré věcné texty na témata související s jejich oblastí zájmu s uspokojivou úrovní porozumění.
+
+B2 – Studenti této úrovně dokážou číst s velkou mírou nezávislosti, přizpůsobují styl a rychlost čtení různým textům a účelům a selektivně používají vhodné referenční zdroje. Má širokou slovní zásobu aktivního čtení, ale může mít potíže s nízkofrekvenčními idiomy.
+
+C1 – Studenti této úrovně dokážou podrobně porozumět dlouhým a složitým textům, ať už se týkají nebo netýkají jejich vlastní oblasti specializace, za předpokladu, že dokážou znovu přečíst obtížné části. Mohou také porozumět široké škále textů, včetně literárních textů, článků v novinách nebo časopisech a specializovaných akademických nebo odborných publikací, za předpokladu, že mají příležitosti k opakovanému čtení a mají přístup k referenčním nástrojům.
+
+C2 – Studenti této úrovně mohou porozumět prakticky všem typům textů včetně abstraktních, strukturálně složitých nebo vysoce hovorových literárních a neliterárních spisů. Dokážou také porozumět široké škále dlouhých a složitých textů, ocenit jemné rozdíly ve stylu a implicitní i explicitní význam.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

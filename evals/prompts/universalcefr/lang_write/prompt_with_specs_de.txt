@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given German text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 – Lernende auf diesem Niveau können Informationen zu persönlich relevanten Themen (z. B. Vorlieben und Abneigungen, Familie, Haustiere) mit einfachen Wörtern/Gebärden und grundlegenden Ausdrücken geben. Sie können auch einfache, isolierte Sätze und Wendungen produzieren.
+
+A2 – Lernende auf diesem Niveau können eine Reihe einfacher Sätze und Wendungen bilden, die mit einfachen Konnektoren wie „und“, „aber“ und „weil“ verbunden sind. Sie verfügen über einen ausreichenden Wortschatz, um grundlegende kommunikative Bedürfnisse und einfache Überlebensbedürfnisse auszudrücken.
+
+B1 – Lernende auf diesem Niveau können einfache, zusammenhängende Texte zu vertrauten Themen aus ihrem Interessengebiet verfassen, indem sie eine Reihe kürzerer, einzelner Elemente zu einer linearen Folge verknüpfen. Sie verfügen über einen guten Wortschatz zu bekannten Themen und Alltagssituationen.
+
+B2 – Lernende auf diesem Niveau können klare, detaillierte Texte zu verschiedenen Themen ihres Interessengebiets verfassen, Informationen und Argumente aus mehreren Quellen zusammenfassen und bewerten. Sie verfügen über einen guten Wortschatz für Themen ihres Fachgebiets sowie für die meisten allgemeinen Themen.
+
+C1 – Lernende auf diesem Niveau können klare, gut strukturierte Texte zu komplexen Themen verfassen, die wesentlichen Punkte herausarbeiten, Standpunkte ausführlich mit Nebenaspekten, Begründungen und passenden Beispielen untermauern und mit einem geeigneten Schluss abrunden. Sie können außerdem Aufbau und Konventionen verschiedener Textsorten anwenden und Ton, Stil und Register je nach Adressat, Texttyp und Thema variieren.
+
+C2 – Lernende auf diesem Niveau können klare, flüssige und komplexe Texte in einem angemessenen und wirkungsvollen Stil mit einer logischen Struktur verfassen, die dem Leser hilft, wichtige Punkte zu erkennen. Sie beherrschen ein sehr breites Spektrum an Wortschatz, einschließlich idiomatischer Wendungen und umgangssprachlicher Ausdrücke, und zeigen ein Bewusstsein für konnotative Bedeutungsebenen.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

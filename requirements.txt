@@ -1,0 +1,30 @@
+# Full dependency set for the beetle-analyze analysis suite.
+# Install with:  pip install -r requirements.txt   (or: pip install -e .)
+# Specialised extras (SFT, brain encoding, SLT geometry, ...) live in
+# pyproject.toml under [project.optional-dependencies]; install e.g.
+#   pip install -e ".[stats,eyetracking,sft,all]"
+
+# Core ML stack
+torch>=2.1
+transformers>=4.40
+datasets>=2.16
+huggingface-hub>=0.20
+accelerate>=0.27
+sentencepiece>=0.1.99
+tokenizers>=0.15
+
+# Scientific stack
+numpy>=1.24
+pandas>=2.0
+scipy>=1.11
+scikit-learn>=1.3
+
+# Visualisation
+matplotlib>=3.7
+seaborn>=0.13
+
+# Serialisation / IO used by transformers & datasets internals
+protobuf>=3.20
+pyarrow>=12.0
+requests>=2.31
+tqdm>=4.66

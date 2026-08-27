@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given Estonian text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 – Selle taseme õppijad suudavad anda teavet isiklikult olulistel teemadel (nt meeldimised ja mittemeeldimised, perekond, lemmikloomad), kasutades lihtsaid sõnu/viipeid ja põhilisi väljendeid. Õppijad suudavad moodustada ka lihtsaid üksikuid fraase ja lauseid.
+
+A2 – Selle taseme õppijad suudavad toota lihtsate fraaside ja lausete jada, mis on seotud lihtsate sidesõnadega nagu „ja“, „aga“ ja „sest“. Neil on piisav sõnavara põhiliste suhtlusvajaduste ja lihtsate ellujäämisvajaduste rahuldamiseks.
+
+B1 – Selle taseme õppijad suudavad koostada arusaadavaid, seotud tekste tuttavatel teemadel oma huvivaldkonnas, sidudes lühemaid üksikuid elemente lineaarseks järjestuseks. Neil on hea sõnavara tuttavate teemade ja igapäevaste olukordade kirjeldamiseks.
+
+B2 – Selle taseme õppijad suudavad koostada selgeid ja üksikasjalikke tekste erinevatel nende huvivaldkonnaga seotud teemadel, sünteesides ja hinnates teavet ja argumente mitmest allikast. Neil on hea sõnavara oma valdkonnaga seotud teemadeks ning enamike üldiste teemade jaoks.
+
+C1 – Selle taseme õppijad suudavad koostada selgeid ja hästi struktureeritud tekste keerukatel teemadel, tuues esile olulised küsimused, laiendades ja toetades seisukohti üksikasjalikult koos täiendavate punktide, põhjuste ja asjakohaste näidetega ning lõpetades sobiva järeldusega. Samuti suudavad nad kasutada erinevate žanrite struktuuri ja konventsioone ning varieerida tooni, stiili ja registrit vastavalt adressaadile, tekstiliigile ja teemale.
+
+C2 – Selle taseme õppijad suudavad koostada selgeid, sujuvaid ja keerukaid tekste sobivas ja tõhusas stiilis ning loogilises struktuuris, mis aitab lugejal tuvastada olulisi punkte. Neil on väga lai sõnavara, mis sisaldab idioome ja kõnekeelseid väljendeid; nad tunnetavad ka tähenduse konnotatiivseid tasandeid.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given Dutch text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 – Leerlingen op dit niveau kunnen informatie geven over onderwerpen van persoonlijk belang (bijv. voorkeuren en afkeuren, familie, huisdieren) met eenvoudige woorden/tekens en basisuitdrukkingen. Ze kunnen ook eenvoudige, op zichzelf staande zinnen en uitdrukkingen produceren.
+
+A2 – Leerlingen op dit niveau kunnen een reeks eenvoudige zinnen en uitdrukkingen produceren die verbonden zijn met eenvoudige voegwoorden zoals “en”, “maar” en “omdat”. Ze beschikken over voldoende woordenschat om basisbehoeften in communicatie en eenvoudige overlevingssituaties aan te kunnen.
+
+B1 – Leerlingen op dit niveau kunnen eenvoudige, samenhangende teksten produceren over een reeks vertrouwde onderwerpen binnen hun interessegebied, door een reeks korte, afzonderlijke elementen in een lineaire volgorde te verbinden. Ze beschikken over een goede woordenschat met betrekking tot vertrouwde onderwerpen en alledaagse situaties.
+
+B2 – Leerlingen op dit niveau kunnen duidelijke, gedetailleerde teksten produceren over uiteenlopende onderwerpen die verband houden met hun interessegebied, waarbij ze informatie en argumenten uit meerdere bronnen synthetiseren en evalueren. Ze hebben een goede woordenschat voor onderwerpen binnen hun vakgebied en de meeste algemene thema’s.
+
+C1 – Leerlingen op dit niveau kunnen duidelijke, goed gestructureerde teksten produceren over complexe onderwerpen, waarbij ze relevante kernpunten onderstrepen, standpunten uitgebreid onderbouwen met nevenpunten, redenen en relevante voorbeelden, en afsluiten met een passende conclusie. Ze kunnen ook de structuur en conventies van verschillende tekstgenres hanteren en toon, stijl en register aanpassen aan de ontvanger, het teksttype en het thema.
+
+C2 – Leerlingen op dit niveau kunnen duidelijke, vloeiende en complexe teksten produceren in een gepaste en effectieve stijl, met een logische structuur die de lezer helpt belangrijke punten te identificeren. Ze beheersen een zeer uitgebreide woordenschat, inclusief idiomatische uitdrukkingen en omgangstaal, en tonen bewustzijn van connotatieve betekenislagen.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

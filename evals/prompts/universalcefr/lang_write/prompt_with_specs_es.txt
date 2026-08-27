@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given Spanish text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 – Los estudiantes de este nivel pueden dar información sobre asuntos de relevancia personal (por ejemplo, gustos y disgustos, familia, mascotas) utilizando palabras/signos simples y expresiones básicas. También pueden producir frases y oraciones simples y aisladas.
+
+A2 – Los estudiantes de este nivel pueden producir una serie de frases y oraciones simples conectadas mediante conectores sencillos como “y”, “pero” y “porque”. Tienen un vocabulario suficiente para expresar necesidades comunicativas básicas y afrontar necesidades simples de supervivencia.
+
+B1 – Los estudiantes de este nivel pueden producir textos conectados de forma sencilla sobre una variedad de temas conocidos dentro de su campo de interés, enlazando una serie de elementos breves y discretos en una secuencia lineal. Tienen un buen dominio del vocabulario relacionado con temas familiares y situaciones cotidianas.
+
+B2 – Los estudiantes de este nivel pueden producir textos claros y detallados sobre diversos temas relacionados con su campo de interés, sintetizando y evaluando información y argumentos de diversas fuentes. Poseen un buen dominio del vocabulario relacionado con su campo y con la mayoría de los temas generales.
+
+C1 – Los estudiantes de este nivel pueden producir textos claros y bien estructurados sobre temas complejos, resaltando los aspectos relevantes, desarrollando y respaldando puntos de vista de forma extensa con puntos secundarios, razones y ejemplos pertinentes, y concluyendo adecuadamente. También pueden utilizar la estructura y convenciones de una variedad de géneros, variando el tono, el estilo y el registro según el destinatario, el tipo de texto y el tema.
+
+C2 – Los estudiantes de este nivel pueden producir textos claros, fluidos y complejos en un estilo apropiado y efectivo, con una estructura lógica que ayuda al lector a identificar los puntos significativos. Tienen un buen dominio de un repertorio léxico muy amplio, incluyendo expresiones idiomáticas y coloquialismos; muestran conciencia de los niveles connotativos del significado.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

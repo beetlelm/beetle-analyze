@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given German text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 – Lernende dieser Stufe können sehr kurze, einfache Texte Satz für Satz verstehen, indem sie bekannte Namen, Wörter und einfache Sätze aufgreifen und bei Bedarf wiederholt lesen.
+
+A2 – Lernende dieser Stufe können kurze, einfache Texte mit dem häufigsten Wortschatz verstehen, darunter auch einen Anteil an international verbreiteten Vokabeln.
+
+B1 – Lernende dieser Stufe können einfache Sachtexte zu Themen ihres Interessengebiets mit zufriedenstellendem Verständnis lesen.
+
+B2 – Lernende dieser Stufe können weitgehend selbstständig lesen, indem sie Stil und Geschwindigkeit an unterschiedliche Texte und Zwecke anpassen und geeignete Referenzquellen selektiv nutzen. Sie verfügen über einen breiten aktiven Lesewortschatz, haben aber möglicherweise Schwierigkeiten mit seltenen Redewendungen.
+
+C1 – Lernende dieser Stufe können längere, komplexe Texte detailliert verstehen, unabhängig davon, ob sie zu ihrem Fachgebiet gehören oder nicht, sofern sie schwierige Abschnitte wiederholt lesen können. Sie können außerdem eine Vielzahl von Texten verstehen, darunter literarische Schriften, Zeitungs- und Zeitschriftenartikel sowie wissenschaftliche oder professionelle Fachpublikationen, sofern Möglichkeiten zum Nachlesen bestehen und sie Zugang zu Nachschlagewerken haben.
+
+C2 – Lernende dieser Stufe können nahezu alle Textarten verstehen, darunter abstrakte, strukturell komplexe oder stark umgangssprachliche literarische und nicht-literarische Texte. Sie können außerdem eine breite Palette langer und komplexer Texte verstehen und dabei subtile Stilunterschiede sowie implizite und explizite Bedeutungen wahrnehmen.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

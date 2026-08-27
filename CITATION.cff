@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "beetle-analyze"
+abstract: "A minimal, reproducible toolkit for analysing language-model evaluation output via BLiMP-style minimal-pair accuracy."
+type: software
+version: 0.1.0
+date-released: 2026-08-27
+license: Apache-2.0
+repository-code: "https://github.com/BeetleLM/beetle-analyze"
+url: "https://github.com/BeetleLM/beetle-analyze"
+keywords:
+  - language-models
+  - evaluation
+  - BLiMP
+  - minimal-pairs
+  - reproducibility
+authors:
+  - family-names: Salhan
+    given-names: Suchir

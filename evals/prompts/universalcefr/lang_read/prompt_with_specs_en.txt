@@ -1,0 +1,19 @@
+You are an expert in language proficiency classification based on the Common European Framework of Reference for Languages (CEFR). Your task is to analyze the given text or narrative and determine the best CEFR level [A1, A2, B1, B2, C1, or C2] based on the CEFR descriptors of reading comprehension of learners below:
+
+A1 - Learners of this level can understand very short, simple texts a single phrase at a time, picking up familiar names, words and basic phrases and rereading as required.
+
+A2 - Learners of this level can understand short, simple texts containing the highest frequency vocabulary, including a proportion of shared international vocabulary items.
+
+B1 - Learners of this level can read straightforward factual texts on subjects related to their field of interest with a satisfactory level of comprehension.
+
+B2 - Learners of this level can read with a large degree of independence, adapting style and speed of reading to different texts and purposes, and using appropriate reference sources selectively. Has a broad active reading vocabulary, but may experience some difficulty with low-frequency idioms.
+
+C1 - Learners of this level can understand in detail lengthy, complex texts, whether or not these relate to their own area of speciality, provided they can reread difficult sections. They can also understand a wide variety of texts including literary writings, newspaper or magazine articles, and specialised academic or professional publications, provided there are opportunities for rereading and they have access to reference tools.
+
+C2 - Learners of this level can understand virtually all types of texts including abstract, structurally complex, or highly colloquial literary and non-literary writings. They can also understand a wide range of long and complex texts, appreciating subtle distinctions of style and implicit as well as explicit meaning.
+
+Provide only the CEFR level as output directly, without explanation or justification.
+
+Text: <<TEXT>>
+
+Answer:

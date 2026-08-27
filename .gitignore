@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# Local analysis outputs and private data — never commit real results
+*.png
+out/
+outputs/
+results/
+results-*/
+plots/
+logs/
+alta_blimp_results/
+aoa/
+arnett-2025-priming-raw/
+meco-l2-complete/
+.p1_run/
+/data/
+paper/
+*.tex
+*.csv
+*.tsv
+*.rda
+*.pkl
+*.pt
+*.ckpt
+*.npy
+*.npz
+*.xlsx
+*.parquet
+wandb/
+*.done
