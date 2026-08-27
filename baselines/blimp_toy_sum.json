@@ -1,0 +1,14 @@
+{
+  "scoring": "sum",
+  "n_pairs": 60,
+  "overall_accuracy": 0.6,
+  "ci_low": 0.466667,
+  "ci_high": 0.716667,
+  "per_phenomenon": {
+    "anaphor_agreement": 0.75,
+    "determiner_noun_agreement": 0.666667,
+    "ellipsis": 0.333333,
+    "npi_licensing": 0.75,
+    "subject_verb_agreement": 0.5
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "_comment": "The 'change one variable' companion to toy_sum.json: per-token (mean) scoring instead of sum. This removes the length bias and changes the headline accuracy.",
+  "scoring": "mean",
+  "bootstrap_resamples": 2000,
+  "seed": 0
+}

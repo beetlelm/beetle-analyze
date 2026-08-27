@@ -1,0 +1,6 @@
+{
+  "_comment": "Headline toy analysis: raw total-log-prob (sum) scoring, the BLiMP default. Run with: beetle-analyze blimp --config <this file>. Omitting 'input' uses the bundled toy dataset.",
+  "scoring": "sum",
+  "bootstrap_resamples": 2000,
+  "seed": 0
+}
