@@ -131,6 +131,19 @@ python scripts/make_toy_data.py    # regenerate the synthetic toy dataset (fixed
 The toy dataset is fully synthetic and generated from a fixed random seed. It contains
 no real model outputs or research results.
 
+### Continuous integration
+
+A ready-to-use GitHub Actions workflow (install `.[dev]`, run `pytest`, smoke-run the
+CLI on Python 3.10–3.12) ships as [`.github/ci.yml.disabled`](.github/ci.yml.disabled).
+It was placed there because the initial automated push lacked the `workflow` OAuth
+scope. To enable it, move it into the workflows directory and push with a
+`workflow`-scoped token:
+
+```bash
+git mv .github/ci.yml.disabled .github/workflows/ci.yml
+git commit -m "Enable CI" && git push
+```
+
 ## Citation / DOI
 
 If you use this software, please cite it via [`CITATION.cff`](CITATION.cff).
