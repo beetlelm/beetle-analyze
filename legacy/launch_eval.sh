@@ -5,7 +5,7 @@
 # Each GPU process runs eval_model.py on its model slice (ALL_MODELS[rank::8]).
 # Models are evaluated one at a time — only one model ever in RAM per GPU.
 # After every model, results are committed and pushed to:
-#     git@github.com:suchirsalhan/beetle-analyze.git
+#     git@github.com:BeetleLM/beetle-analyze.git
 #
 # Usage:
 #   cd /path/to/beetle-analyze
@@ -50,7 +50,7 @@ mkdir -p "${REPO_ROOT}/results" "${LOG_DIR}"
 echo "Checking git remote …"
 if ! git -C "${REPO_ROOT}" remote get-url origin &>/dev/null; then
   echo "ERROR: no git remote 'origin' found in ${REPO_ROOT}."
-  echo "       Run: git remote add origin git@github.com:suchirsalhan/beetle-analyze.git"
+  echo "       Run: git remote add origin git@github.com:BeetleLM/beetle-analyze.git"
   exit 1
 fi
 REMOTE_URL="$(git -C "${REPO_ROOT}" remote get-url origin)"

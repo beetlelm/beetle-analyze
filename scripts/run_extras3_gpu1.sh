@@ -3,8 +3,8 @@
 set -u
 set -o pipefail
 
-REPO=/local/scratch/sas245/beetle-analyze
-VENV=/local/scratch/sas245/venvs/beetle-emnlp
+REPO="${REPO:-$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)}"
+VENV="${VENV:-$HOME/.venvs/beetle-analyze}"
 LOG_DIR="$REPO/logs/emnlp_interp_local/gpu1"
 mkdir -p "$LOG_DIR"
 
@@ -15,9 +15,9 @@ export BEETLE_PUSH_BRANCH=emnlp-interp
 export PATH="$VENV/bin:$PATH"
 export PYTHONUNBUFFERED=1
 export TOKENIZERS_PARALLELISM=false
-export HF_HOME="/local/scratch/sas245/huggingface_cache"
-export HF_HUB_CACHE="/local/scratch/sas245/huggingface_cache/hub"
-export HF_DATASETS_CACHE="/local/scratch/sas245/huggingface_cache/datasets"
+export HF_HOME="${HF_HOME:-$HOME/.cache/huggingface}"
+export HF_HUB_CACHE="${HF_HUB_CACHE:-$HF_HOME/hub}"
+export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-$HF_HOME/datasets}"
 
 cd "$REPO"
 PY="$VENV/bin/python"

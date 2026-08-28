@@ -14,7 +14,7 @@
 
 set -euo pipefail
 
-REPO_ROOT="/Users/suchirsalhan/Documents/PHD/PHD/beetle-analyze"
+REPO_ROOT="${REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)}"
 cd "${REPO_ROOT}"
 
 ts() { date -u +%Y-%m-%dT%H:%M:%SZ; }

@@ -35,7 +35,7 @@ fi
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-PY="${PY:-/local/scratch/sas245/venvs/beetle-emnlp/bin/python}"
+PY="${PY:-python}"
 WALLTIME_SECONDS="${WALLTIME_SECONDS:-82800}"  # 23h
 DEFAULT_ORGS=(
     "Beetle-FineWeb-100M"
@@ -121,7 +121,7 @@ export HF_HUB_DISABLE_XET="${HF_HUB_DISABLE_XET:-1}"
 export HF_XET_HIGH_PERFORMANCE="${HF_XET_HIGH_PERFORMANCE:-0}"
 
 # Home filesystem on this host is at 100% — point every HF cache to scratch.
-SCRATCH="${SCRATCH:-/local/scratch/sas245}"
+SCRATCH="${SCRATCH:-${TMPDIR:-/tmp}/beetle}"
 export HF_HOME="${HF_HOME:-$SCRATCH/huggingface_cache}"
 export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-$SCRATCH/hf_datasets_cache}"
 export HUGGINGFACE_HUB_CACHE="${HUGGINGFACE_HUB_CACHE:-$HF_HOME/hub}"

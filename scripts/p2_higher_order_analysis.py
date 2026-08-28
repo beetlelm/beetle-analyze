@@ -29,6 +29,7 @@ Designed to be re-runnable: skips analyses for which there is no aligned data.
 """
 from __future__ import annotations
 
+import os
 import json
 import logging
 import re
@@ -49,7 +50,7 @@ warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 REPO = Path(__file__).resolve().parents[1]
-PICO_ROOT = Path("/Users/suchirsalhan/Documents/PHD/PHD/pico-analyze-emnlp")
+PICO_ROOT = Path(os.environ.get("PICO_ROOT", str(Path.home() / "pico-analyze")))
 PICO_ANALYSIS = PICO_ROOT / "analysis_results"
 
 DOWNSTREAM = {

@@ -48,7 +48,7 @@ push_once() {
 
     # Refit any new surprisal CSVs into ΔlogLik, then regen all figures so
     # every push reflects the latest GPU-1 progress.
-    PY=${PY:-/local/scratch/sas245/venvs/beetle-emnlp/bin/python}
+    PY=${PY:-python}
     if [[ -x "$PY" ]]; then
         "$PY" scripts/fit_meco_baselines_evals.py >>"$PUSH_LOG" 2>&1 || true
         "$PY" -m analyze.meco_vs_baselines        >>"$PUSH_LOG" 2>&1 || true

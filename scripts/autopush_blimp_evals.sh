@@ -65,7 +65,7 @@ push_once() {
 
     # Regenerate the publishable figure set BEFORE staging so the latest
     # CSV state is reflected in every push.
-    PY=${PY:-/local/scratch/sas245/venvs/beetle-emnlp/bin/python}
+    PY=${PY:-python}
     if [[ -x "$PY" ]]; then
         "$PY" -m analyze.blimp_scale_curriculum     >>"$PUSH_LOG" 2>&1 || true
         "$PY" -m analyze.blimp_checkpoint_trajectory >>"$PUSH_LOG" 2>&1 || true

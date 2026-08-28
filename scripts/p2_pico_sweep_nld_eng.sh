@@ -15,8 +15,8 @@
 # Logs per repo go to ../pico-analyze-emnlp/sweep_logs/.
 set -uo pipefail
 
-PICO_ROOT="/Users/suchirsalhan/Documents/PHD/PHD/pico-analyze-emnlp"
-PICO_VENV="/Users/suchirsalhan/Documents/PHD/PHD/pico-analyze/.venv"
+PICO_ROOT="${PICO_ROOT:-$HOME/pico-analyze}"
+PICO_VENV="${PICO_VENV:-$HOME/pico-analyze/.venv}"
 PYTHON="${PICO_VENV}/bin/python"
 ANALYZER="${PICO_ROOT}/scripts/analyze_beetle_branches.py"
 PLOTTER="${PICO_ROOT}/scripts/plot_emnlp.py"

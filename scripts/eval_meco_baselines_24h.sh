@@ -33,14 +33,14 @@ fi
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-PY="${PY:-/local/scratch/sas245/venvs/beetle-emnlp/bin/python}"
+PY="${PY:-python}"
 WALLTIME_SECONDS="${WALLTIME_SECONDS:-82800}"  # 23h
 LOG_DIR="$ROOT/logs/meco_baselines"
 mkdir -p "$LOG_DIR"
 SWEEP_LOG="$LOG_DIR/sweep_$(date -u +%Y%m%dT%H%M%SZ).log"
 
 # HF cache pinned to scratch (home is at 100%).
-SCRATCH="${SCRATCH:-/local/scratch/sas245}"
+SCRATCH="${SCRATCH:-${TMPDIR:-/tmp}/beetle}"
 export HF_HOME="${HF_HOME:-$SCRATCH/huggingface_cache}"
 export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-$SCRATCH/hf_datasets_cache}"
 export HUGGINGFACE_HUB_CACHE="${HUGGINGFACE_HUB_CACHE:-$HF_HOME/hub}"

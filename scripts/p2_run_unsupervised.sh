@@ -11,7 +11,7 @@
 # Logs all stages to logs/p2_run/.
 set -uo pipefail
 
-REPO="/Users/suchirsalhan/Documents/PHD/PHD/beetle-analyze"
+REPO="${REPO:-$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)}"
 cd "${REPO}"
 LOG_DIR="${REPO}/logs/p2_run"
 mkdir -p "${LOG_DIR}"

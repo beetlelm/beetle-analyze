@@ -7,8 +7,8 @@
 set -u
 set -o pipefail
 
-REPO_ROOT="/Users/suchirsalhan/Documents/PHD/PHD/beetle-analyze"
-VENV_PY="/Users/suchirsalhan/.venvs/eval-pipeline/bin/python"
+REPO_ROOT="${REPO_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")/.." && pwd)}"
+VENV_PY="${VENV_PY:-python}"
 LOG_DIR="${REPO_ROOT}/logs/cpu_review"
 mkdir -p "${LOG_DIR}"
 
