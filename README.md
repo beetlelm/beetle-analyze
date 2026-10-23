@@ -1,180 +1,258 @@
-# beetle-analyze
+# 📊 **Beetle Analyze**
 
-**Reproduce a headline BLiMP accuracy on CPU in under a second — then run the full interpretability and evaluation suite on your own Beetle checkpoints.**
+**Beetle Analyze** is a companion toolkit to [**beetlelm**](https://github.com/beetlelm/beetlelm), designed specifically for **evaluating bilingual language models** and studying their **learning dynamics**. Whether you want to score grammatical minimal pairs across four languages, align model surprisal to second-language reading times, track structural priming over training, or probe the evolution of specific syntactic units, Beetle Analyze has you covered.
 
-`beetle-analyze` is the analysis component of the [Beetle](https://beetlelm.github.io)
-project: the code used to study trained LM checkpoints. It covers BLiMP-style grammatical
-minimal-pair scoring, learning-curve and phase-transition analysis, cross-lingual
-representation analysis (CKA, probing, logit lens), sparse-autoencoder feature analysis,
-reading-time / eye-tracking (MECO) and FLORES perplexity evaluation, functional
-localization of syntactic units, and more.
+> For a **detailed run-through**, check out the **full tutorial** on our website at [beetlelm.github.io/docs.html#beetle-analyze](https://beetlelm.github.io/docs.html#beetle-analyze).
 
-It ships with a **minimal, self-contained quickstart** — a BLiMP-style analysis that
-runs on CPU in under a second with no model downloads — so you can install the package
-and reproduce a headline number immediately, then move on to the full research modules.
+---
 
-> This repository contains **code only**. No datasets, model checkpoints, eval outputs,
-> figures, or paper artifacts are included. The full research modules expect you to
-> supply your own checkpoints and data.
+## **Key Features**
 
-## Install
+1. **BLiMP-Style Minimal-Pair Accuracy**
+   - Grammatical minimal-pair scoring across **English BLiMP**, **BLiMP-NL** (Dutch), **ZhoBLiMP** (Chinese), and **MultiBLiMP** (5 languages)
+   - Sentence log-probabilities compared by total (`sum`) or per-token (`mean`) scoring, with bootstrap confidence intervals
+
+2. **MECO Second-Language Reading-Time Alignment**
+   - Autoregressive surprisal **S(wᵢ) = −log P(wᵢ | w₍<ᵢ₎)** fed into linear mixed-effects regressions on **MECO** first-pass (gaze) durations (waves 1+2)
+   - Reports **ΔlogL = logL(full) − logL(baseline)**; the regression-fitting script (`analyze/ppp_delta_ll.py`) ships with the code
+
+3. **BLiSS Learner Minimal Pairs** (Gao et al. 2025)
+   - Learner triplets — corrected `s_corr`, learner error `s_lrn`, artificial error `s_art` — scored by token-normalised surprisal **BPT = −(1/|s|) Σ log₂ p(wₜ | w₍<ₜ₎)**
+   - Headline metrics **RP@0**, **RP@τ**, **NGS**, **CPS** (plus LP / HAP / HAP-τ / SO), stratified by L1 and CEFR
+
+4. **FLORES-200 Cross-Lingual NLL**
+   - Sentence-level NLL (**Sent-NLL**) trajectories, mean over the **1,012** parallel devtest sentences per language (L1 vs English, with an L2-onset marker)
+
+5. **Cross-Lingual Structural Priming**
+   - **Bernolet** genitive (and other Arnett 2025 stimuli): the surprisal difference (nats) between congruent and incongruent primes, with permutation *p*-values
+
+6. **CEFR / Pedagogical Evaluation**
+   - **JFLEG** grammatical error correction, **CLOTH** + Cambridge cloze, false-friend disambiguation, and the CEFR perplexity gradient
+
+7. **Interpretability Over Checkpoints**
+   - Operates on the gradient / activation / circuit snapshots saved by **beetlelm**: **CKA**, probing, logit lens, and **sparse autoencoders (SAEs)**
+
+8. **Config-Driven & Extensible**
+   - A single config defines which checkpoints/steps, components, and metrics to analyze — just like **pico-analyze** — so a sweep is one command and a change is one line
+
+---
+
+## **Installation**
+
+1. **Install the Package**
+
+   The quickest path (works today, pulls the full ML stack):
+
+   ```bash
+   pip install git+https://github.com/beetlelm/beetle-analyze.git
+   ```
+
+   Once published to PyPI:
+
+   ```bash
+   pip install beetle-analyze
+   ```
+
+   Or from a clone, in editable mode:
+
+   ```bash
+   git clone https://github.com/beetlelm/beetle-analyze
+   cd beetle-analyze
+   pip install -e .
+   ```
+
+   Specialised analyses are grouped as optional extras — install only what you need:
+
+   ```bash
+   pip install -e ".[stats]"         # mixed-effects models, multiple-comparison corrections
+   pip install -e ".[eyetracking]"   # MECO reading-time (minicons, rdata, wordfreq)
+   pip install -e ".[saes]"          # sparse-autoencoder feature analysis (einops)
+   pip install -e ".[stats,eyetracking,saes]"   # combine extras
+   pip install -e ".[all]"           # every specialised extra
+   ```
+
+   Requires **Python 3.10–3.12**.
+
+2. **Configure Environment**
+
+   Several evaluations load gated datasets and checkpoints from the Hugging Face Hub (BLiSS is private; the Beetle orgs host the model checkpoints). Export your token:
+
+   ```bash
+   export HF_TOKEN=your_huggingface_token
+   # or: huggingface-cli login
+   ```
+
+3. **Verify the Install**
+
+   Reproduce a headline BLiMP-style number on CPU, with no model downloads:
+
+   ```bash
+   beetle-analyze blimp
+   ```
+
+---
+
+## **Basic Usage**
+
+1. **Prepare Your Checkpoints**
+   Make sure you have checkpoints generated by **beetlelm** — either locally or hosted on the Hugging Face Hub under the `Beetle-HumanScale` and `Beetle-FineWeb` orgs. The research modules also work on the gradient/activation/circuit snapshots that beetlelm saves during training.
+
+2. **Create an Analysis Config**
+   Define which checkpoints, components, and metrics to analyze. Like pico-analyze, Beetle Analyze is config-driven:
+
+   ```yaml
+   # configs/my_analysis.yaml
+
+   analysis_name: "humanscale_nld_eng"
+   family: humanscale
+   langs: [deu, nld, zho, eng]
+   steps:
+     - 0
+     - 10000
+     - main          # final checkpoint
+   metrics:
+     - blimp          # English BLiMP, BLiMP-NL, ZhoBLiMP, MultiBLiMP
+     - meco           # L2 reading-time surprisal → ΔlogL
+     - flores         # FLORES-200 Sent-NLL trajectories
+     - priming        # cross-lingual structural priming
+   monitoring:
+     output_dir: "results/evals"
+   ```
+
+   <!-- verify: the research runner currently takes these selections as CLI flags (see step 3); a YAML front-end mirroring this schema is in progress. -->
+
+3. **Run the Analysis**
+
+   The master runner drives a full sweep (its flags map onto the config above):
+
+   ```bash
+   python analyze/run.py --all --family humanscale --langs deu nld zho eng
+   ```
+
+   - **`--family`**: which repo family to iterate — `humanscale | fineweb | ablations | all`
+   - **`--langs`**: ISO-639-3 languages to evaluate
+   - **`--all`**: run every stage (BLiMP, MECO, FLORES, priming, figures); or select stages with `--ppl --meco --figures`, filter conditions with `--condition B1` / `--variant B2_ewc`, and compare families with `--compare family-vs-family`
+
+4. **Review Output**
+   Results are written under `results/evals/` (per-stage CSV/TSV/JSON), and the nine paper figures regenerate from those CSVs with `python analyze/run.py --paper-figures --family all --langs deu nld zho eng`.
+
+### Quickstart with no GPU or downloads
+
+The bundled `beetle_analyze` package scores a BLiMP-style analysis over *precomputed* sentence log-probabilities, so it runs instantly on CPU. Change one variable — raw `sum` scoring carries a length bias; switch to per-token `mean` to remove it:
 
 ```bash
-pip install -e .                    # full suite (pulls torch, transformers, datasets, ...)
-pip install -e ".[dev]"             # + tests and the toy quickstart
-pip install -e ".[all]"             # + every specialised extra
-```
-
-Requires Python 3.10–3.12. The full install is heavy (PyTorch + Hugging Face stack).
-Specialised analyses are grouped as optional extras — `stats`, `eyetracking`, `sft`,
-`saes`, `brain`, `viz`, `geometry`, `io`, `nlp` — install only what you need, e.g.
-`pip install -e ".[stats,eyetracking]"`.
-
-## Quickstart (no GPU, no downloads)
-
-The bundled `beetle_analyze` package provides a headline BLiMP-style analysis over
-*precomputed* sentence log-probabilities (i.e. eval output). It runs instantly on CPU:
-
-```bash
-beetle-analyze blimp
-```
-
-```
-  scoring         : sum
-  pairs           : 60
-  overall accuracy: 0.6000  [95% CI 0.4667, 0.7167]
-  per phenomenon  :
-      anaphor_agreement               0.750  (n=12)
-      determiner_noun_agreement       0.667  (n=12)
-      ellipsis                        0.333  (n=12)
-      npi_licensing                   0.750  (n=12)
-      subject_verb_agreement          0.500  (n=12)
-```
-
-**The headline toy result is `overall accuracy = 0.6000`.** Expected metrics are
-committed in [`baselines/`](baselines/) so you can diff your run.
-
-### Python API
-
-```python
-from beetle_analyze import analyze_file, toy_data_path
-
-result = analyze_file(toy_data_path(), scoring="sum")
-print(result.overall_accuracy)      # 0.6
-print(result.per_phenomenon)        # per-phenomenon DataFrame
-```
-
-### Change one variable and re-run
-
-Raw `sum` scoring compares total sentence log-probabilities and carries a length bias.
-Switch to per-token `mean` scoring to remove it:
-
-```bash
-beetle-analyze blimp --scoring mean     # accuracy 0.60 -> 0.80
-```
-
-Example configs for both variants live in
-[`beetle_analyze/configs/`](beetle_analyze/configs/); a step-by-step walkthrough is in
-[`notebooks/quickstart.ipynb`](notebooks/quickstart.ipynb).
-
-### Bring your own eval output
-
-Point the CLI at any JSONL file, one minimal pair per line:
-
-```json
-{"phenomenon": "subject_verb_agreement", "logprob_good": -21.3, "logprob_bad": -24.8, "n_tokens_good": 8, "n_tokens_bad": 8}
-```
-
-```bash
+beetle-analyze blimp                 # headline toy accuracy
+beetle-analyze blimp --scoring mean  # change one variable and re-run
 beetle-analyze blimp --input my_evals.jsonl --json-out result.json --plot-out fig.png
 ```
 
-## The full research suite
+Expected metrics are committed under [`baselines/`](baselines/) so you can diff your run. A step-by-step walkthrough lives in [`notebooks/quickstart.ipynb`](notebooks/quickstart.ipynb).
 
-The research modules operate on trained checkpoints and their eval outputs. They
-generally require the full ML stack and a GPU, plus data you provide. Installed console
-entry points include `beetle-cka`, `beetle-probe`, `beetle-baseline`,
-`beetle-dev-trajectory`, `beetle-cognate-filter`, `beetle-byte-normalize`,
-`beetle-units-localize`, `beetle-units-ablate`, `beetle-units-trajectory`. Most modules
-are also runnable as `python -m analyze.<module>`, and the research runner drives a full
-sweep:
+---
 
-```bash
-python analyze/run.py --all --family <family> --langs <lang[,lang...]>
-```
+## **Reproduce the paper's results**
 
-## Project layout
+Each headline result in the paper ([arxiv.org/abs/2609.22633](https://arxiv.org/abs/2609.22633)) maps to one runner below. All evaluations run on the **final-release** model families — **Beetle-FineWeb-24B** (conditions **-4 / -5**), **Beetle-HumanScale**, and **Beetle-FineWeb-100M** — hosted on the Hugging Face Hub, and most read gated datasets, so `export HF_TOKEN=...` first. The convenience groups `beetle-humanscale` and `beetle-fineweb` resolve the right repos automatically; the model families are iterated from `analyze/fineweb_model_manifest.json`.
 
-```
-beetle_analyze/      # self-contained minimal quickstart: scoring, CLI, toy data, configs
-analyze/             # main analysis package (BLiMP, MECO, convergence, phase transitions, ...)
-  xling/             #   cross-lingual analysis (CKA, probing, logit lens, cognates)
-  sae/               #   sparse-autoencoder feature analysis
-  units/             #   functional localization + ablation of syntactic units
-  brain/  causal/  lens/  forgetting_pkg/  meco_detailed/
-evals/               # benchmark runners (BLiMP, MECO, FLORES, RACE, priming, UniversalCEFR)
-finetune/            # instruction / LoRA fine-tuning pipeline
-slt/                 # singular-learning-theory geometry analyses
-scripts/             # orchestration / sweep run-scripts (.py and .sh)
-legacy/              # earlier eval drivers kept for reference
-models.py  utils.py  # shared model loading + evaluation helpers
-tests/               # fast CPU smoke test for the quickstart
-notebooks/           # quickstart.ipynb
-baselines/           # expected metrics for the toy analysis
-```
+### MECO second-language reading-time alignment (ΔlogL)
 
-## Compute requirements
-
-- **Quickstart:** CPU only, <1 s, no downloads. Just `numpy` + `pandas`.
-- **Full suite:** the ML stack (PyTorch + Hugging Face) and, for most analyses, a
-  CUDA GPU plus your own checkpoints and evaluation data.
-
-## Reproduce / regenerate
+Two steps: score word-level surprisal on the MECO L2 stimuli, then fit the mixed-effects regression and report ΔlogL.
 
 ```bash
-pytest -q                            # runs the smoke tests, asserts the 0.60 headline
-python scripts/make_toy_data.py      # regenerate the synthetic toy dataset (fixed seed)
+# 1. Word-by-word surprisal on the MECO L2 stimuli
+python evals/eval_meco.py --models beetle-humanscale baselines \
+    --stimuli data/meco_l2_stims.tsv --output results/meco
+
+# 2. Fit baseline vs full regression → ΔlogL = logL(full) − logL(baseline)
+python -m analyze.ppp_delta_ll \
+    --surprisals results/meco/surprisals_all.tsv \
+    --corpus meco_l2 \
+    --output results/ppp/meco_l2_delta_ll.csv
 ```
 
-The toy dataset is fully synthetic (fixed random seed) and contains no real model
-outputs or research results.
-
-### Continuous integration
-
-A ready-to-use GitHub Actions workflow (install `.[dev]`, run `pytest`, smoke-run the
-CLI on Python 3.10–3.12) ships as [`.github/ci.yml.disabled`](.github/ci.yml.disabled).
-It was placed there because the automated push token lacked the `workflow` OAuth scope.
-Enable it with:
+The full MECO comparison pipeline (Fisher-z group tests, mixed-effects fit, figures) is one command:
 
 ```bash
-git mv .github/ci.yml.disabled .github/workflows/ci.yml
-git commit -m "Enable CI" && git push
+python -m analyze.run_meco_comparison --languages en nl es el pl \
+    --include-bgpt --include-bilingual-llm --output results/meco/
 ```
 
-## Learn more
+Requires the `[stats]` and `[eyetracking]` extras and `data/meco_l2_stims.tsv` (MECO waves 1+2).
 
-- **Tutorial:** [beetle-analyze walkthrough](https://beetlelm.github.io/docs.html#beetle-analyze) on the project docs.
-- **Research:** https://beetlelm.github.io/research.html
-- **Project home:** https://beetlelm.github.io
-- **Framework overview:** https://beetlelm.github.io/framework.html
-- **Paper:** *Beetle: A Bilingual Model Suite for Modelling Second-Language Processing* (EMNLP 2026) — https://arxiv.org/abs/2609.22633
+### BLiSS learner minimal pairs (RP@0, RP@τ, NGS, CPS)
 
-## Part of the Beetle ecosystem
+BLiSS is a gated dataset — `huggingface-cli login` first.
 
-- **[beetlelm](https://github.com/beetlelm/beetlelm)** — core training framework.
-- **[beetle-data](https://github.com/beetlelm/beetle-data)** — bilingual data-preparation pipeline.
-- **[beetle-analyze](https://github.com/beetlelm/beetle-analyze)** (this repo) — evaluation and interpretability analysis toolkit.
-- **[beetle-explorer](https://github.com/beetlelm/beetle-explorer)** — no-code Colab model explorer.
+```bash
+python evals/eval_bliss.py \
+    --model Beetle-HumanScale/beetle-bilingual-l2-50-classroom-20-b4-humanscale-nld-eng \
+    --output results/evals/bliss --split train --batch-size 32
+```
 
-## Citation / DOI
+### BLiMP-style minimal-pair accuracy
 
-If you use this software, please cite it via [`CITATION.cff`](CITATION.cff).
+Scores `blimp_eng`, `blimp_nl`, `zhoblimp`, and `multiblimp`:
 
-A DOI can be minted through [Zenodo](https://zenodo.org): the maintainer enables the
-`beetlelm/beetle-analyze` repository in Zenodo's GitHub integration, then publishing a
-GitHub release (e.g. `v0.1.0`) archives it and issues a DOI. A
-[`.zenodo.json`](.zenodo.json) is included for that step.
+```bash
+python evals/eval_blimp.py \
+    --models beetle-humanscale beetle-fineweb baselines \
+    --output results/evals/blimp
+```
 
-## License
+### FLORES-200 sentence-level NLL (Sent-NLL)
 
-[Apache-2.0](LICENSE) © Suchir Salhan.
+Mean over all 1,012 devtest sentences per language; L1 + L2 are auto-detected from each repo name:
+
+```bash
+python evals/eval_flores_ppl.py \
+    --models beetle-humanscale beetle-fineweb baselines
+```
+
+### Cross-lingual structural priming (Bernolet genitive)
+
+Score the priming surprisals, then join against the published BGPT baseline and run the item-level statistics:
+
+```bash
+# Final-checkpoint priming surprisals for all eligible bilinguals
+bash scripts/run_priming_tier1_final.sh
+
+# Or score one family directly, then compare to Arnett (2025) BGPT numbers
+python evals/eval_priming.py --models beetle-humanscale beetle-fineweb --revisions main
+python evals/compare_priming_to_bgpt.py \
+    --beetle-dir results/evals/priming \
+    --arnett-dir arnett-2025-priming-raw \
+    --output results/evals/priming/comparison
+
+# Item-level mixed-effects significance + paper figures
+python scripts/priming_stats.py
+python scripts/priming_emnlp_paper_figures.py
+```
+
+**Worked example — Bernolet genitive priming effect** (surprisal difference in nats between congruent and incongruent primes, with permutation *p*-value), for the final-release **Beetle-FineWeb** and **Beetle-HumanScale** models:
+
+| Curriculum | FineWeb (nats) | *p* | HumanScale (nats) | *p* |
+|:--|--:|--:|--:|--:|
+| B1 | 1.051 | .0004 | 1.369 | <.0001 |
+| B2 | 0.991 | .037 | 1.095 | <.0001 |
+| B3 | 0.969 | .051 | 1.216 | <.0001 |
+| B4 | 1.252 | .0008 | 0.565 | .005 |
+| B5 | 1.075 | .0003 | 0.571 | <.0001 |
+
+All priming numbers are computed from **between-language** pairs only (Dutch-prime / English-target averaged with English-prime / Dutch-target), matching the paper's headline narrative.
+
+---
+
+## **Part of the Beetle ecosystem**
+
+Beetle Analyze is one component of the **Beetle** project for bilingual language-model research:
+
+- [**beetlelm**](https://github.com/beetlelm/beetlelm) — training the bilingual Beetle models
+- [**beetle-data**](https://github.com/beetlelm/beetle-data) — curricula and evaluation data
+- [**beetle-explorer**](https://github.com/beetlelm/beetle-explorer) — interactive model & results explorer
+- **Website**: [beetlelm.github.io](https://beetlelm.github.io)
+- **Models**: [huggingface.co/Beetle-HumanScale](https://huggingface.co/Beetle-HumanScale)
+- **Paper**: [arxiv.org/abs/2609.22633](https://arxiv.org/abs/2609.22633)
+
+Beetle Analyze is open-source under the **Apache 2.0 License**.
+
+**Happy Analyzing!**
