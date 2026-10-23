@@ -1,12 +1,13 @@
 # beetle-analyze
 
-Interpretability and evaluation analysis suite for the **Beetle** language models.
+**Reproduce a headline BLiMP accuracy on CPU in under a second — then run the full interpretability and evaluation suite on your own Beetle checkpoints.**
 
-`beetle-analyze` is the analysis code used to study trained LM checkpoints: BLiMP-style
-grammatical minimal-pair scoring, learning-curve and phase-transition analysis,
-cross-lingual representation analysis (CKA, probing, logit lens), sparse-autoencoder
-feature analysis, reading-time / eye-tracking (MECO) and FLORES perplexity evaluation,
-functional localization of syntactic units, and more.
+`beetle-analyze` is the analysis component of the [Beetle](https://beetlelm.github.io)
+project: the code used to study trained LM checkpoints. It covers BLiMP-style grammatical
+minimal-pair scoring, learning-curve and phase-transition analysis, cross-lingual
+representation analysis (CKA, probing, logit lens), sparse-autoencoder feature analysis,
+reading-time / eye-tracking (MECO) and FLORES perplexity evaluation, functional
+localization of syntactic units, and more.
 
 It ships with a **minimal, self-contained quickstart** — a BLiMP-style analysis that
 runs on CPU in under a second with no model downloads — so you can install the package
@@ -95,7 +96,12 @@ generally require the full ML stack and a GPU, plus data you provide. Installed 
 entry points include `beetle-cka`, `beetle-probe`, `beetle-baseline`,
 `beetle-dev-trajectory`, `beetle-cognate-filter`, `beetle-byte-normalize`,
 `beetle-units-localize`, `beetle-units-ablate`, `beetle-units-trajectory`. Most modules
-are also runnable as `python -m analyze.<module>`.
+are also runnable as `python -m analyze.<module>`, and the research runner drives a full
+sweep:
+
+```bash
+python analyze/run.py --all --family <family> --langs <lang[,lang...]>
+```
 
 ## Project layout
 
@@ -145,12 +151,27 @@ git mv .github/ci.yml.disabled .github/workflows/ci.yml
 git commit -m "Enable CI" && git push
 ```
 
+## Learn more
+
+- **Tutorial:** [beetle-analyze walkthrough](https://beetlelm.github.io/docs.html#beetle-analyze) on the project docs.
+- **Research:** https://beetlelm.github.io/research.html
+- **Project home:** https://beetlelm.github.io
+- **Framework overview:** https://beetlelm.github.io/framework.html
+- **Paper:** *Beetle: A Bilingual Model Suite for Modelling Second-Language Processing* (EMNLP 2026) — https://arxiv.org/abs/2609.22633
+
+## Part of the Beetle ecosystem
+
+- **[beetlelm](https://github.com/beetlelm/beetlelm)** — core training framework.
+- **[beetle-data](https://github.com/beetlelm/beetle-data)** — bilingual data-preparation pipeline.
+- **[beetle-analyze](https://github.com/beetlelm/beetle-analyze)** (this repo) — evaluation and interpretability analysis toolkit.
+- **[beetle-explorer](https://github.com/beetlelm/beetle-explorer)** — no-code Colab model explorer.
+
 ## Citation / DOI
 
 If you use this software, please cite it via [`CITATION.cff`](CITATION.cff).
 
 A DOI can be minted through [Zenodo](https://zenodo.org): the maintainer enables the
-`BeetleLM/beetle-analyze` repository in Zenodo's GitHub integration, then publishing a
+`beetlelm/beetle-analyze` repository in Zenodo's GitHub integration, then publishing a
 GitHub release (e.g. `v0.1.0`) archives it and issues a DOI. A
 [`.zenodo.json`](.zenodo.json) is included for that step.
 
